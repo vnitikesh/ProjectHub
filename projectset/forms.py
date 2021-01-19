@@ -6,3 +6,6 @@ class ProjectUploadForm(forms.ModelForm):
     class Meta:
         model = ProjectUpload
         fields = '__all__'
+
+class DocumentForm(forms.Form):
+    docfile = forms.FileField(label = "Select a file")

@@ -1,0 +1,98 @@
+
+
+<html>
+<head>
+
+<script src = "http://gist-it.appshot.com/https://github.com/vnitikesh/Picture-Gallery"></script>
+</head>
+
+
+<body>
+
+
+
+  <form method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+      <input type="file" id="file_input" name="file_field" multiple webkitdirectory directory/>
+      <input type="text" id="directories" name="directories" hidden />
+      <input type="submit"/>
+  </form>
+
+  <br><br>
+
+  <!-- List of uploaded documents -->
+  {% if documents %}
+      All documents in the database:
+      <ul>
+          {% for document in documents %}
+
+              <li><a href="{{ document.docfile.url }}">{{ document.docfile }}</a></li>
+
+              <li>
+
+
+            <p>{{ document.directory_name|safe }}</p>
+  </li>
+          {% endfor %}
+      </ul>
+  {% else %}
+      <p>No documents.</p>
+  {% endif %}
+
+  "Hey there"
+
+
+
+
+
+  <script>
+
+   files = document.querySelector("#file_input").files;
+   document.querySelector("#file_input").addEventListener("change", function() {
+    var x = document.querySelector("#file_input");
+    console.log('name' in x)
+    console.log(x);
+    console.log(x.name);
+    if('files' in x){
+      if(x.files.length == 0){
+        console.log(x.files.length);
+        //do something
+      }else{
+        var directories = {};
+        for (var i = 0; i < x.files.length; i++){
+          console.log(x.files.length);
+
+          var file = x.files[i]
+          if('name' in file){
+            file.webkitRelativePath
+            directories[file.name] = file.webkitRelativePath
+            //console.log(directories);
+
+          }
+
+          if('size' in file){
+            //console.log(file.size);
+          }
+          else{
+            //do something else
+          }
+      }
+      //console.log(x.files.length);
+      console.log(directories);
+
+
+
+      directories = JSON.stringify(directories);
+      console.log(directories);
+      document.querySelector("#directories").value = directories;
+    }
+  }
+   });
+
+  </script>
+
+
+</body>
+
+
+</html>

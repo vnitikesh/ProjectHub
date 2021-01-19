@@ -1,0 +1,339 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="ZbjrLj5XZ0g/5BuZvBSeRnYcinSTrkctFc0TbBlYgp8VhnUiJpNY3agt9+h6TQjtxV7aglTuA+wl418jhMcsFA==" />
+
+  <title>CodePen - Horizontal parallax sliding slider  with Swiper.js</title>
+  <link rel="stylesheet" media="screen" href="https://cpwebassets.codepen.io/assets/fullpage/fullpage-4de243a40619a967c0bf13b95e1ac6f8de89d943b7fc8710de33f681fe287604.css" />
+  <link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/global/global-031b289c73bf4e4d154ba7eb2675a0ae1333ced942cdba9a66c6f032629b8038.css" />
+  <link rel="stylesheet" media="screen" href="https://cpwebassets.codepen.io/assets/packs/css/everypage-f7f2049f.css" />
+  <link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/page/page-4b32bcb381ab5382aabfb7053e21dfb332d0f40e9ec157b472146c969c557c8f.css" />
+  <link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/editor/editor-98c0dbbd7ac24ac4147895144699413cc20f2b2460d5f2f6f3f9c30e4f063f46.css" />
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&display=swap" rel="stylesheet" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@CodePen">
+  <meta name="twitter:title" content="Horizontal parallax sliding slider  with Swiper.js">
+  <meta name="twitter:description" content="...">
+  <meta name="twitter:image" content="https://assets.codepen.io/212362/internal/screenshots/pens/aEqzBB.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=540&amp;quality=75&amp;v=2&amp;version=1554699035&amp;width=960">
+  <meta property="og:image" content="https://assets.codepen.io/212362/internal/screenshots/pens/aEqzBB.default.png?fit=cover&amp;format=auto&amp;ha=true&amp;height=540&amp;quality=75&amp;v=2&amp;version=1554699035&amp;width=960" itemprop="thumbnailUrl">
+  <meta property="og:title" content="Horizontal parallax sliding slider  with Swiper.js">
+  <meta property="og:url" content="https://codepen.io/digistate/details/aEqzBB">
+  <meta property="og:site_name" content="CodePen">
+  <meta property="og:description" content="...">
+  <link rel="alternate" type="application/json+oembed" href="https://codepen.io/api/oembed?url=https%3A%2F%2Fcodepen.io%2Fdigistate%2Fpen%2FaEqzBB&format=json" title="Horizontal parallax sliding slider  with Swiper.js" />
+  <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+  <meta name="apple-mobile-web-app-title" content="CodePen">
+  <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+  <link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+  <script nonce="PV/QH6YtYFw=">
+    /* Firefox needs this to prevent FOUT */
+  </script>
+
+<style>
+  %transition_all_03s {
+    transition:all .3s ease;
+  }
+  %backface_visibility_hidden{
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .swiper-container {
+    width: 80%;
+    height: 100vh;
+    // display:inline-block;
+    // vertical-align:top;
+    float:left;
+    transition:opacity .6s ease, transform .3s ease;
+    &.nav-slider{
+      width:20%;
+      padding-left:5px;
+      .swiper-slide{
+        cursor:pointer;
+        opacity:.4;
+        transition:opacity .3s ease;
+        &.swiper-slide-active{
+          opacity:1;
+        }
+        .content{
+          width:100%;
+          .title{
+            font-size:20px;
+          }
+        }
+      }
+    }
+    &:hover{
+      .swiper-button-prev,
+      .swiper-button-next{
+        transform:translateX(0);
+        opacity:1;
+        visibility:visible;
+      }
+    }
+    &.loading{
+      opacity:0;
+      visibility:hidden;
+    }
+  }
+  .swiper-wrapper{
+
+  }
+  .swiper-slide{
+    overflow: hidden;
+    @extend %backface_visibility_hidden;
+    .slide-bgimg{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background-position:center;
+      background-size:cover;
+    }
+    .entity-img{
+      display:none;
+    }
+    .content{
+      position:absolute;
+      top:40%;
+      left:0;
+      width:50%;
+      padding-left:5%;
+      color:#fff;
+      .title{
+        font-size:2.6em;
+        font-weight:bold;
+        margin-bottom:30px;
+      }
+      .caption{
+        display:block;
+        font-size:13px;
+        line-height:1.4;
+        transform:translateX(50px);
+        opacity:0;
+        transition:opacity .3s ease, transform .7s ease;
+        &.show{
+          transform:translateX(0);
+          opacity:1;
+        }
+      }
+    }
+  }
+  [class^="swiper-button-"]{
+    width:44px;
+    opacity:0;
+    visibility:hidden;
+    @extend %transition_all_03s;
+  }
+  .swiper-button-prev{
+    transform:translateX(50px);
+  }
+  .swiper-button-next{
+    transform:translateX(-50px);
+  }
+
+</style>
+
+</head>
+<body>
+
+<div class="swiper-container main-slider loading">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Shaun Matthews</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Alexis Berry</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Billie	Pierce</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Trevor	Copeland</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Bernadette	Newman</p>
+        <span class="caption">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span>
+      </div>
+    </div>
+  </div>
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev swiper-button-white"></div>
+  <div class="swiper-button-next swiper-button-white"></div>
+</div>
+
+<!-- Thumbnail navigation -->
+<div class="swiper-container nav-slider loading">
+  <div class="swiper-wrapper" role="navigation">
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLbVhsNzdIYmlfN1E" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Shaun Matthews</p>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLWTdaX3J5b1VueDg" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Alexis Berry</p>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLRml1b3B6eXVqQ2s" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Billie	Pierce</p>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLVUpEems2ZXpHYVk" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Trevor	Copeland</p>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <figure class="slide-bgimg" style="background-image:url(https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM)">
+        <img src="https://drive.google.com/uc?export=view&id=0B_koKn2rKOkLNXBIcEdOUFVIWmM" class="entity-img" />
+      </figure>
+      <div class="content">
+        <p class="title">Bernadette	Newman</p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Params
+  let mainSliderSelector = '.main-slider',
+      navSliderSelector = '.nav-slider',
+      interleaveOffset = 0.5;
+
+  // Main Slider
+  let mainSliderOptions = {
+        loop: true,
+        speed:1000,
+        autoplay:{
+          delay:3000
+        },
+        loopAdditionalSlides: 10,
+        grabCursor: true,
+        watchSlidesProgress: true,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        on: {
+          init: function(){
+            this.autoplay.stop();
+          },
+          imagesReady: function(){
+            this.el.classList.remove('loading');
+            this.autoplay.start();
+          },
+          slideChangeTransitionEnd: function(){
+            let swiper = this,
+                captions = swiper.el.querySelectorAll('.caption');
+            for (let i = 0; i < captions.length; ++i) {
+              captions[i].classList.remove('show');
+            }
+            swiper.slides[swiper.activeIndex].querySelector('.caption').classList.add('show');
+          },
+          progress: function(){
+            let swiper = this;
+            for (let i = 0; i < swiper.slides.length; i++) {
+              let slideProgress = swiper.slides[i].progress,
+                  innerOffset = swiper.width * interleaveOffset,
+                  innerTranslate = slideProgress * innerOffset;
+
+              swiper.slides[i].querySelector(".slide-bgimg").style.transform =
+                "translateX(" + innerTranslate + "px)";
+            }
+          },
+          touchStart: function() {
+            let swiper = this;
+            for (let i = 0; i < swiper.slides.length; i++) {
+              swiper.slides[i].style.transition = "";
+            }
+          },
+          setTransition: function(speed) {
+            let swiper = this;
+            for (let i = 0; i < swiper.slides.length; i++) {
+              swiper.slides[i].style.transition = speed + "ms";
+              swiper.slides[i].querySelector(".slide-bgimg").style.transition =
+                speed + "ms";
+            }
+          }
+        }
+      };
+  let mainSlider = new Swiper(mainSliderSelector, mainSliderOptions);
+
+  // Navigation Slider
+  let navSliderOptions = {
+        loop: true,
+        loopAdditionalSlides: 10,
+        speed:1000,
+        spaceBetween: 5,
+        slidesPerView: 5,
+        centeredSlides : true,
+        touchRatio: 0.2,
+        slideToClickedSlide: true,
+        direction: 'vertical',
+        on: {
+          imagesReady: function(){
+            this.el.classList.remove('loading');
+          },
+          click: function(){
+            mainSlider.autoplay.stop();
+          }
+        }
+      };
+  let navSlider = new Swiper(navSliderSelector, navSliderOptions);
+
+  // Matching sliders
+  mainSlider.controller.control = navSlider;
+  navSlider.controller.control = mainSlider;
+</script>
+</body>
+</html>
