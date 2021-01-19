@@ -22,6 +22,7 @@ def wohoo(request):
     documents = Directory.objects.all()
     print(documents)
     #for i in documents:
+
         #print("hi")
         #print(i.docfile)
         #print(type(json.loads(i.directory_name)))
