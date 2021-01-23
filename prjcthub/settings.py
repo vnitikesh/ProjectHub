@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'accounts',
     'projectset',
     'crispy_forms',
-    'directory_upload'
+    'directory_upload',
+    'myproject'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },

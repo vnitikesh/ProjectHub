@@ -1,54 +1,32 @@
 {%load static%}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Zenixspace</title>
-  <!-- Tell the browser to be responsive to screen width -->
 
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{% static 'plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
-  <link rel="stylesheet" href="{% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+  <title>Collapsible sidebar using Bootstrap 4</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="{% static 'plugins/jqvmap/jqvmap.min.css' %}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="{% static 'plugins/daterangepicker/daterangepicker.css' %}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{% static 'plugins/summernote/summernote-bs4.css' %}">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <!-- select 2 -->
-  <link rel="stylesheet" href="{% static 'plugins/select2/css/select2.min.css' %}">
-  <link rel="stylesheet" href="{% static 'plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <!-- Our Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome JS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+  <!-- jQuery CDN - Slim version (=without AJAX) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+  <style>
 
 .fb{
   margin-left:40px;
@@ -62,68 +40,298 @@
   background-color: #dd4b39;
   color:white;
 }
+
+
+    @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+
+#container {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ccc;
+  overflow-x: scroll;
+}
+
+#content {
+  width: 250px;
+  background-color: #ccc;
+}
+
+
+
+
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size:0.8em;
+    color: black;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+#sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
+    background: #1c1e2e;
+    color: #fff;
+    transition: all 0.3s;
+    height: 100%;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: black;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: blue;
+
+}
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: white;
+    margin-left: 10px;
+}
+
+    .wrapper {
+        display: flex;
+        align-items: stretch;
+    }
+
+    #sidebar {
+      min-width: 250px;
+      max-width: 250px;
+      min-height: 100vh;
+  }
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+
+.card{
+  width: 302px;
+  height: 460px;
+
+}
+.card-body{
+  background-color: #1c1e2e;
+}
+.modal{
+  margin-left: 40%;
+  height: 600px;
+  width: 500px;
+}
+hr{
+  background-color: white;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  .dismissmodal{
+    text-align:center;
+  }
+  .card{
+    width: 100%;
+  }
+  .modal{
+    margin-left:3px;
+  }
+.modal-dialog{
+  width: 200px;
+}
+  video{
+    margin-left:0%;
+  }
+  img{
+    width: 100%;
+  }
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
+
 </style>
+
+<script type = "text/javascript">
+
+
+
+     function upload_project(){
+       $('#techUsed').modal('show')
+     }
+
+
+     $(document).ready(function () {
+
+       $("#slide").on('click', function(){
+         document.getElementById('container').scrollLeft += 20;
+      
+       });
+
+         $('#sidebarCollapse').on('click', function () {
+             $('#sidebar').toggleClass('active');
+         });
+
+     });
+   </script>
 </head>
-{% block body_wraper_opner %}
-{% endblock %}
 
-{% block nav_bar %}
-{% endblock %}
+<body>
 
-{% block side_bar %}
-{% endblock %}
 
-{% block body_block %}
-{% endblock %}
 
-{% block body_wraper_closer %}
-{% endblock %}
-<!-- jQuery -->
-<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-<!-- Bootstrap 4 -->
-<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<!-- AdminLTE App -->
+  <div class = "modal fade" id = "techUsed" tabindex = "-1" aria-labelledby = "techModalLabel" aria-hidden = "true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Upload Project</h5>
+        </div>
+        <div class="modal-body">
+          <form method = "POST">
+            {% csrf_token %}
+          {{ form|crispy }}
+          <center>
+          <button type = "submit" class = "btn btn-primary">Submit</button>
+        </center>
+        </form>
+        </div>
 
-<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
-  <!-- jQuery -->
-  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-  <!-- jQuery UI 1.11.4 -->
-  <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
-  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-  <script>
-    $.widget.bridge('uibutton', $.ui.button)
-  </script>
-  <!-- Bootstrap 4 -->
-  <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <!-- ChartJS -->
-  <script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
-  <!-- Sparkline -->
-  <script src="{% static 'plugins/sparklines/sparkline.js' %}"></script>
-  <!-- JQVMap -->
-  <script src="{% static 'plugins/jqvmap/jquery.vmap.min.js' %}"></script>
-  <script src="{% static 'plugins/jqvmap/maps/jquery.vmap.usa.js' %}"></script>
-  <!-- jQuery Knob Chart -->
-  <script src="{% static 'plugins/jquery-knob/jquery.knob.min.js' %}"></script>
-  <!-- daterangepicker -->
-  <script src="{% static 'plugins/moment/moment.min.js' %}"></script>
-  <script src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
-  <!-- Tempusdominus Bootstrap 4 -->
-  <script src="{% static 'plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' %}"></script>
-  <!-- Summernote -->
-  <script src="{% static 'plugins/summernote/summernote-bs4.min.js' %}"></script>
-  <!-- overlayScrollbars -->
-  <script src="{% static 'plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
-  <!-- jquery-validation -->
-  <script src="{% static 'plugins/jquery-validation/jquery.validate.min.js' %}"></script>
-  <script src="{% static 'plugins/jquery-validation/additional-methods.min.js' %}"></script>
-  <!-- AdminLTE App -->
-  <script src="{% static 'dist/js/adminlte.js' %}"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="{% static 'dist/js/demo.js' %}"></script>
-  <!-- select 2 -->
-  <script src="{% static 'plugins/select2/js/select2.full.min.js' %}"></script>
-  <!-- DataTables -->
-  <script src="{% static 'plugins/datatables/jquery.dataTables.js' %}"></script>
-  <script src="{% static 'plugins/datatables-bs4/js/dataTables.bootstrap4.js' %}"></script>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="wrapper">
+      <!-- Sidebar -->
+      <nav id="sidebar">
+          <div class="sidebar-header">
+              <strong><h2>ProjectHub</h2></strong>
+          </div>
+
+          <ul class="list-unstyled components">
+
+              <li class="active">
+                  <a href="#homeSubmenu">Home</a>
+
+              </li>
+              <li>
+                  <a href="#">About us</a>
+              </li>
+
+              <li>
+                  <a href="{% url 'myproject' %}">My Project</a>
+              </li>
+
+
+              <li>
+                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Recommendations</a>
+                  <ul class="collapse list-unstyled" id="pageSubmenu">
+                      <li>
+                          <a href="#">Recommended Github Repositories</a>
+                      </li>
+                      <li>
+                          <a href="#">Recommended Telegram Groups</a>
+                      </li>
+                      <li>
+                          <a href="#">Recommended Medium Articles</a>
+                      </li>
+                      <li>
+                          <a href="#">Recommended Podcast</a>
+                      </li>
+                  </ul>
+              </li>
+
+              <li>
+
+                <a href = "{% url 'podcasts' %}">Podcasts</a>
+              </li>
+
+          </ul>
+      </nav>
+
+
+
+
+
+              <div id="content" style = "background-color: #e8edeb; width: 100%;">
+
+
+          <nav class="navbar navbar-expand-lg" style = "background-color: #1c1e2e;">
+        <div class="container-fluid">
+          <button type="button" id="sidebarCollapse" class="btn btn-info">
+              <i class="fas fa-align-left"></i>
+
+          </button>
+          <a class="navbar-brand" href="#"><!----></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#"><!----></a>
+              </li>
+              <li class="nav-item">
+                <span style = "color:white;" class="nav-link" onclick = "upload_project()">Upload Project</span>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><!----></a>
+              </li>
+            </ul>
+            <span class="navbar-text">
+              <!---->
+            </span>
+          </div>
+        </div>
+      </nav>
+      <div>
+      {% block content %}
+
+
+
+      {% endblock content %}
+</div>
+    </div>
+  </div>
+
+
+</body>

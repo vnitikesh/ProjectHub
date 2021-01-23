@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if data %}
+<div class="container">
+  <div class="row">
+{% for proj in data %}
+<div class="col-lg-3.2 mb-2">
+<div class = "container">
+
+<div class="card">
+  <img src = "{{ proj.image.url }}" alt = "oops no image found!" height = '250' width = '300'>
+  <!--
+  <video width='200'controls>
+    <source src='{{ MEDIA_URL }}{{ proj.videofile }}' type='video/mp4'>
+      Your browser does not support the video tag.
+  </video>
+  -->
+  <div class="card-body">
+      <center><strong><h4 class="card-title" style = "color: white;">{{ proj.title }}</h4></strong></center>
+      <hr>
+      {% if proj.description %}
+      <p class="card-text" style = "color: white;">{{ proj.description | truncatewords:17 | slice:":-4" }}</p>
+      {% else %}
+      <p style = "color:white;">No descriptions available...</p>
+      {% endif %}
+      <a href = "#test{{ proj.id }}" class="btn btn-danger btn-sm" data-toggle = "modal"><i class = "fa fa-eye"></i>Watch Video</a>
+      <a style = "float:right;" href = "{% url 'myproject-detail' proj.title %}" class="btn btn-danger btn-sm">Full Details</a>
+      <div class = "modal fade" id = "test{{ proj.id }}" tabindex = "-1" aria-labelledby = "videoModalLabel" aria-hidden = "true">
+      <div style = "width: 500px; height: 500px; background-color: black;" class = "modal-dialog modal-lg">
+      <div class = "modal-content bg-dark">
+      <div class = "modal-header">
+      <h5 style = "color:white;" class = "modal-title" id = "exampleModalLabel">{{ proj.title }}</h5>
+      <button type="button" style = "float:right;color:black;" class="btn btn-default btn-sm" class = "dismissmodal" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class = "modal-body">
+<center>
+      <video height = '390' width = '460' controls>
+
+        <source src='{{ MEDIA_URL }}{{ proj.videofile }}' type='video/mp4'>
+          Your browser does not support the video tag.
+
+      </video>
+</center>
+      </div>
+      </div>
+      </div>
+      </div>
+
+  </div>
+</div>
+
+</div>
+</div>
+<br></br>
+{% endfor %}
+</div>
+</div>
+
+{% else %}
+<h3>Oops no content found!</h3>
+{% endif %}
+
+
+
+
+{% endblock content %}
